@@ -3,7 +3,7 @@ const moment = require('moment-timezone')
 
 const sequelize = new Sequelize(null, null, null, {
   dialect: 'sqlite',
-  storage: 'db/todoapp-sample.db'
+  storage: 'db/todoapp.db'
 });
 
 const Task = sequelize.define('Task', {
