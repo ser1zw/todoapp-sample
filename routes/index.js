@@ -3,7 +3,6 @@ var router = express.Router();
 
 const ToDo = require('../models/todo')
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
   ToDo.findAll().then((todos) => {
     res.render('index', { todos: todos })
@@ -11,7 +10,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  const body = req.body
   const todo = ToDo.build({
     subject: req.body.subject,
     description: req.body.description,
@@ -20,9 +18,17 @@ router.post('/', function(req, res, next) {
 
   todo.save().then(() => {
     ToDo.findAll().then((todos) => {
-      res.render('index', { todos: todos })
+      res.redirect('/')
     })
   })
 });
+
+router.post('/delete/:id', (req, res, next) => {
+  ToDo.destroy({
+    where: { id: req.params.id }
+  }).then(() => {
+    res.redirect('/')
+  })
+})
 
 module.exports = router;
