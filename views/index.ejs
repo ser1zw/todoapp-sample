@@ -1,11 +1,37 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ToDo List</title>
+</head>
+<body>
+  <form action="/" method="POST">
+    <ul>
+        <li><label for="subject">Subject</label><input id="subject" type="text" name="subject"></li>
+        <li><label for="description">Description:</label><input id="description" type="text" name="description"></li>
+        <li><label for="deadline">Deadline:</label><input id="Deadline" type="text" name="deadline"></li>
+        <button type="submit">Register</button>
+    </ul>
+    <hr>
+    <table>
+      <thead>
+        <th>Deadline</th>
+        <th>Subject</th>
+        <th>Description</th>
+      </thead>
+      <tbody>
+        <% for (const todo of todos) { %>
+          <tr>
+            <td><%= todo.deadline %></td>
+            <td><%= todo.subject %></td>
+            <td><%= todo.description %></td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+    
+  </form>
+</body>
 </html>
