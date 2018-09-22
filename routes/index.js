@@ -1,30 +1,30 @@
 var express = require('express');
 var router = express.Router();
 
-const ToDo = require('../models/todo')
+const Task = require('../models/task')
 
 router.get('/', function(req, res, next) {
-  ToDo.findAll().then((todos) => {
-    res.render('index', { todos: todos })
+  Task.findAll().then((tasks) => {
+    res.render('index', { tasks: tasks })
   })
 });
 
 router.post('/', function(req, res, next) {
-  const todo = ToDo.build({
+  const task = Task.build({
     subject: req.body.subject,
     description: req.body.description,
     deadline: req.body.deadline,
   })
 
-  todo.save().then(() => {
-    ToDo.findAll().then((todos) => {
+  task.save().then(() => {
+    Task.findAll().then((tasks) => {
       res.redirect('/')
     })
   })
 });
 
 router.post('/delete/:id', (req, res, next) => {
-  ToDo.destroy({
+  Task.destroy({
     where: { id: req.params.id }
   }).then(() => {
     res.redirect('/')

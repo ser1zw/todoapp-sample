@@ -4,13 +4,13 @@ const sequelize = new Sequelize(null, null, null, {
   storage: 'db/todoapp-sample.db'
 });
 
-const ToDo = sequelize.define('ToDo', {
+const Task = sequelize.define('Task', {
     subject: { type: Sequelize.STRING },
     description: { type: Sequelize.STRING },
     deadline: { type: Sequelize.DATE },
 }, {
-    tableName: 'todos',
+    tableName: 'tasks',
     timestamps: false
 })
 
-module.exports = ToDo
+module.exports = Task
